@@ -263,9 +263,11 @@ export class PanZoom {
 		this.resizeTimeoutId = setTimeout( function () {
 			// this.updateContainerBounds();
 
-			if ( Math.abs( this.scale - this.centerScale ) <= 0.01 ) {
-				this.animateToCenter();
-			}
+			this.setToCenter();
+
+			// if ( Math.abs( this.scale - this.centerScale ) <= 0.01 ) {
+			// 	this.animateToCenter();
+			// }
 		}.bind( this ), 100 );
 	}
 
