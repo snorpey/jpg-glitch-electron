@@ -1,0 +1,19 @@
+:root {
+	--font-family: -apple-system, Roboto, 'Lucida Grande', sans-serif;
+	--font-size: 14px;
+
+	--dark-gray: #333;
+	--darker-gray: #222;
+	--white: #fff;
+	--light-gray: #efefef;
+	--text-color: var(--dark-gray);
+	--background-color: transparent;
+}
+
+.inverse-color {
+	--text-color: var(--white);
+	--background-color: var(--dark-gray);
+
+	color: var(--text-color);
+	background-color: var(--background-color);
+}

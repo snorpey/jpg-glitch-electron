@@ -1,0 +1,13 @@
+body {
+	font-family: var(--font-family);
+	font-size: var(--font-size);
+	color: var(--text-color);
+}
+
+.headline {
+	font-size: 120%;
+}
+
+.center-text {
+	text-align: center;
+}
