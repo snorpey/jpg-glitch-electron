@@ -10,7 +10,7 @@
 						<h1 class="about-app-name center-text">{{ appName }}</h1>
 						<p class="center-text">Version {{ appVersion }}</p>
 						<p class="about-small center-text">Copyright &copy; 2018 Georg Fischer</p>
-						<p class="about-small center-text about-margin"><a href="http://snorpey.com" @click="linkClicked">Website</a> <a href="http://github.com/snorpey" @click="linkClicked">Report a bug</a></p>
+						<p class="about-small center-text about-margin"><a href="http://snorpey.github.io/jpg-glitch-electron" @click="linkClicked">Website</a> <a href="https://github.com/snorpey/jpg-glitch-electron" @click="linkClicked">Report a bug</a></p>
 						<p class="about-small center-text about-margin">Thank you for using this software.<br /> Have a great day!</p>
 					</div>
 					<button class="about-page-close" @click="closeClicked">&times;</button>
@@ -33,7 +33,6 @@
 	width: 100%;
 	height: 100vh;
 	position: relative;
-	/*display: flex;*/
 }
 
 .about-page {
@@ -66,7 +65,6 @@
 
 .about-text {
 	line-height: 1.5;
-	/*text-align: center;*/
 }
 
 .about-small {
