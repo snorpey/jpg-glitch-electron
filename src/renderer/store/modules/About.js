@@ -19,17 +19,15 @@ const mutations = {
 
 const actions = {
 	showAbout ( { commit } ) {
-		console.log( 'SHOW' );
 		commit( 'SHOW' );
 	},
 
 	hideAbout ( { commit } ) {
-		commit( 'HIDE' )
+		commit( 'HIDE' );
 	},
 
 	toggleAbout ( { state, dispatch } ) {
-		console.log( 'TOGGLE' );
-		dispatch( state.show ? 'hideAbout' : 'showAbout' )
+		dispatch( state.show ? 'hideAbout' : 'showAbout' );
 	}
 };
 
