@@ -25,6 +25,10 @@
 	flex-shrink: 0;
 }
 
+.is-mac .tab-bar {
+	padding-top: 23px;
+}
+
 .tab-bar .open-btn {
 	flex-shrink: 0;
 }

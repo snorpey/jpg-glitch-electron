@@ -1,16 +1,24 @@
 <template>
-	<div id="app">
+	<div id="app" :class="appCSSClasses">
 		<router-view></router-view>
+		<about-page />
 	</div>
 </template>
 
 <script>
 import css from '../style/index.css';
 import { menu } from './menu.js';
+import AboutPage from '@/components/AboutPage';
 
 export default {
 	name: 'jpg-glitch-electron',
+	components: { AboutPage },
 	computed: {
+		appCSSClasses () {
+			return {
+				'is-mac': process.platform === 'darwin'
+			}
+		},
 		fileMenuItem () {
 			return menu.items.filter( item => item.id === 'file' )[0];
 		},
