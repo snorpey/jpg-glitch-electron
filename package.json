@@ -3,7 +3,7 @@
 	"version": "0.0.1",
 	"author": "Georg Fischer <hi@snorpey.com>",
 	"description": "Glitch images with JPG encoding",
-	"homepage":"https://snorpey.com/projects/jpg-glitch-electron",
+	"homepage":"https://snorpey.github.io/jpg-glitch-electron",
 	"license": null,
 	"main": "./dist/electron/main.js",
 	"scripts": {
