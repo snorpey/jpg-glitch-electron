@@ -4,7 +4,7 @@ import App from './App';
 import router from './router';
 import store from './store';
 
-if (! process.env.IS_WEB ) {
+if ( ! process.env.IS_WEB ) {
 	Vue.use( require( 'vue-electron' ) );
 }
 

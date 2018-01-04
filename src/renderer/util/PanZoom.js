@@ -258,17 +258,9 @@ export class PanZoom {
 	}
 
 	resized () {
-		clearTimeout( this.resizeTimeoutId );
+		cancelAnimationFrame( this.resizeTimeoutId );
 
-		this.resizeTimeoutId = setTimeout( function () {
-			// this.updateContainerBounds();
-
-			this.setToCenter();
-
-			// if ( Math.abs( this.scale - this.centerScale ) <= 0.01 ) {
-			// 	this.animateToCenter();
-			// }
-		}.bind( this ), 100 );
+		this.resizeTimeoutId = requestAnimationFrame( this.setToCenter().bind( this ) );
 	}
 
 	setToCenter () {

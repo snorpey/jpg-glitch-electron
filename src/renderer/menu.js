@@ -1,6 +1,5 @@
 import { remote } from 'electron';
 import store from './store';
-// const { Menu, MenuItem } = remote;
 
 const { app, Menu } = remote;
 
@@ -92,19 +91,25 @@ const template = [
 			{ role: 'minimize' },
 			{ role: 'close' }
 		]
-	}//,
-	// {
-	// 	role: 'help',
-	// 	submenu: [
-	// 		{
-	// 			label: 'Learn More',
-	// 			click () { require('electron').shell.openExternal('https://electron.atom.io') }
-	// 		}
-	// 	]
-	// }
+	},
+	{
+		role: 'help',
+		submenu: [
+			{
+				label: 'About',
+				click () {
+					store.dispatch( 'toggleAbout' );
+				}
+			},
+			{
+				label: 'Website',
+				click () { require('electron').shell.openExternal( 'https://snorpey.com/jpg-glitch-electron' ) }
+			}
+		]
+	}
 ]
 
-if (process.platform === 'darwin') {
+if ( process.platform === 'darwin' ) {
 	template.unshift({
 		label: app.getName(),
 		submenu: [
