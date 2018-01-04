@@ -3,6 +3,7 @@
 	"version": "0.0.1",
 	"author": "Georg Fischer <hi@snorpey.com>",
 	"description": "Glitch images with JPG encoding",
+	"homepage":"https://snorpey.com/projects/jpg-glitch-electron",
 	"license": null,
 	"main": "./dist/electron/main.js",
 	"scripts": {
@@ -19,6 +20,7 @@
 	"build": {
 		"productName": "JPG Glitch",
 		"appId": "com.snorpey.jpg-glitch-electron",
+		"copyright": "Copyright (c) 2018 Georg Fischer <hi@snorpey.com>",
 		"directories": {
 			"output": "build"
 		},
@@ -36,7 +38,7 @@
 				{
 					"x": 130,
 					"y": 150,
-					"type": "file"
+					"type":"file"
 				}
 			]
 		},
@@ -47,7 +49,18 @@
 			"icon": "build/icons/icon.ico"
 		},
 		"linux": {
-			"icon": "build/icons"
+			"target": [ "AppImage", "snap", "deb", "tar.gz" ],
+			"icon": "build/icons",
+			"category": "Graphics",
+			"desktop": {
+				"Type": "Application",
+				"Name": "JPG Glitch",
+				"Comment": "An Application for glitching images"
+			}
+		},
+		"snap": {
+			"confinement": "classic",
+			"grade": "devel"
 		}
 	},
 	"dependencies": {
