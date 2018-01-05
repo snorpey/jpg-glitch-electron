@@ -9,7 +9,7 @@ This is the desktop app for [jpg-glitch](https://snorpey.github.io/jpg-glitch). 
 ## Download
 The following operating systems are supported:
 
-_Please note:_ This software hasn't been extensively tested. Please [report](../.../issues) any bugs you might encounter.
+_Please note:_ This software hasn't been extensively tested. Please [report](../../issues) any bugs you might encounter.
 
 * [Windows](https://github.com/snorpey/jpg-glitch-electron/releases/download/v0.0.1/JPG.Glitch.Setup.0.0.1.exe)
 * [macOS](https://github.com/snorpey/jpg-glitch-electron/releases/download/v0.0.1/JPG.Glitch-0.0.1.dmg)
@@ -36,7 +36,7 @@ npm run build
 
 ```
 
-You can find installation instruction for building `node-canvas` are [here](https://github.com/Automattic/node-canvas), and special ones for windows [here](https://github.com/Automattic/node-canvas/wiki/Installation---Windows#install-with-chocolatey). 
+You can find installation instructions for building `node-canvas` are [here](https://github.com/Automattic/node-canvas), and special ones for windows [here](https://github.com/Automattic/node-canvas/wiki/Installation---Windows#install-with-chocolatey). 
 
 These instructions may or may not work for you on the first try. If in doubt, delete the `node_modules` directory start a fresh install with `npm install`, and google any error messages. With persistance, you'll get there eventually.
 
