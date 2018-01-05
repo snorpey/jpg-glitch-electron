@@ -9,9 +9,12 @@ This is the desktop app for [jpg-glitch](https://snorpey.github.io/jpg-glitch). 
 ## Download
 The following operating systems are supported:
 
-* Windows
-* macOS
-* Linux
+_Please note:_ This software hasn't been extensively tested. Please [report](../.../issues) any bugs you might encounter.
+
+* [Windows](https://github.com/snorpey/jpg-glitch-electron/releases/download/v0.0.1/JPG.Glitch.Setup.0.0.1.exe)
+* [macOS](https://github.com/snorpey/jpg-glitch-electron/releases/download/v0.0.1/JPG.Glitch-0.0.1.dmg)
+* Linux: [AppImage](https://github.com/snorpey/jpg-glitch-electron/releases/download/v0.0.1/jpg-glitch-electron-0.0.1-x86_64.AppImage) / [deb](https://github.com/snorpey/jpg-glitch-electron/releases/download/v0.0.1/jpg-glitch-electron_0.0.1_amd64.deb) / [snap](https://github.com/snorpey/jpg-glitch-electron/releases/download/v0.0.1/jpg-glitch-electron_0.0.1_amd64.snap) / [tar.gz](https://github.com/snorpey/jpg-glitch-electron/releases/download/v0.0.1/jpg-glitch-electron-0.0.1.tar.gz)
+
 
 ### Development
 
