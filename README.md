@@ -4,7 +4,7 @@
 
 ![Windows Screenshot](build/screenshots/windows/01.png)
 
-This is the desktop app for [jpg-glitch](https://snorpey.github.io/jpg-glitch). You can use it to transform images so appear glitched.
+This is the desktop app for [jpg-glitch](https://snorpey.github.io/jpg-glitch). You can use it to transform images so that appear glitched.
 
 ## Download
 The following operating systems are supported:
