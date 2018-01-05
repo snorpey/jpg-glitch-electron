@@ -4,7 +4,7 @@
 	"author": "Georg Fischer <hi@snorpey.com>",
 	"description": "Glitch images with JPG encoding",
 	"homepage":"https://snorpey.github.io/jpg-glitch-electron",
-	"license": null,
+	"license": "MIT",
 	"main": "./dist/electron/main.js",
 	"scripts": {
 		"build": "node .electron-vue/build.js && electron-builder",
