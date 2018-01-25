@@ -3,8 +3,12 @@
 	"version": "0.0.1",
 	"author": "Georg Fischer <hi@snorpey.com>",
 	"description": "Glitch images with JPG encoding",
-	"homepage":"https://snorpey.github.io/jpg-glitch-electron",
+	"homepage": "https://snorpey.github.io/jpg-glitch-electron",
 	"license": "MIT",
+	"repository" : {
+		"type" : "git",
+		"url" : "https://github.com/snorpey/jpg-glitch-electron.git"
+	},
 	"main": "./dist/electron/main.js",
 	"scripts": {
 		"build": "node .electron-vue/build.js && electron-builder",
@@ -38,7 +42,7 @@
 				{
 					"x": 130,
 					"y": 150,
-					"type":"file"
+					"type": "file"
 				}
 			]
 		},
@@ -49,7 +53,12 @@
 			"icon": "build/icons/icon.ico"
 		},
 		"linux": {
-			"target": [ "AppImage", "snap", "deb", "tar.gz" ],
+			"target": [
+				"AppImage",
+				"snap",
+				"deb",
+				"tar.gz"
+			],
 			"icon": "build/icons",
 			"category": "Graphics",
 			"desktop": {
@@ -89,7 +98,7 @@
 		"css-loader": "^0.28.4",
 		"del": "^3.0.0",
 		"devtron": "^1.4.0",
-		"electron": "^1.7.5",
+		"electron": "^1.7.11",
 		"electron-builder": "^19.19.1",
 		"electron-debug": "^1.4.0",
 		"electron-devtools-installer": "^2.2.0",
