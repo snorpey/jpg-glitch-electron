@@ -118,7 +118,7 @@
 <script>
 import ImportBtn from './ImportBtn';
 export default {
-	components: { ImportBtn },
+	components: { ImportBtn },
 	computed: {
 		files () {
 			return this.$store.getters.files.map( file => {

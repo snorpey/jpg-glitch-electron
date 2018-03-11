@@ -12,7 +12,7 @@ import AboutPage from '@/components/AboutPage';
 
 export default {
 	name: 'jpg-glitch-electron',
-	components: { AboutPage },
+	components: { AboutPage },
 	computed: {
 		appCSSClasses () {
 			return {
