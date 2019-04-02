@@ -1,6 +1,6 @@
 {
   "name": "jpg-glitch-electron",
-  "version": "0.0.4",
+  "version": "0.0.3",
   "author": "Georg Fischer <hi@snorpey.com>",
   "description": "Glitch images with JPG encoding",
   "homepage": "https://snorpey.github.io/jpg-glitch-electron",
