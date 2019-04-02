@@ -1,4 +1,5 @@
-import { loadLocalImageToImageData, blobURLFromImageFile, dataURLtoBlobURL, getBlobURL, arrayBufferToBlob } from '@/util/image.js';
+import { arrayBufferToBlob } from 'blob-util';
+import { loadLocalImageToImageData, blobURLFromImageFile, dataURLtoBlobURL, getBlobURL } from '@/util/image.js';
 import { getFileName, getExtension } from '@/util/path.js';
 import { blobUrlToBuffer, saveFile, fetchBlob, loadTextFile } from '@/util/file.js';
 import { clone } from '@/util/object.js';
@@ -355,10 +356,9 @@ const actions = {
 		const file = getters.fileById( change.fileId );
 
 		if ( file && change.dataURL ) {
-			dataURLtoBlobURL( change.dataURL )
-				.then( glitchBlobURL => {
-					commit( 'SET_FILE_ATTR', { file, key: 'glitchBlobURL', value: glitchBlobURL } )
-				} );
+			const glitchBlobURL = dataURLtoBlobURL( change.dataURL );
+
+			commit( 'SET_FILE_ATTR', { file, key: 'glitchBlobURL', value: glitchBlobURL } );
 		}
 	},
 
@@ -407,16 +407,14 @@ function newFileFromLoadedFile ( file ) {
 		const fileContent = JSON.parse( file.fileContent );
 
 		if ( fileContent.srcBuffer ) {
-			return arrayBufferToBlob( toArrayBuffer( fileContent.srcBuffer.data ) )
-				.then( blob => {
-					return getBlobURL( blob )
-				} )
-				.then( srcBlobURL => {
-					const filePath = file.filePath;
-					const history = fileContent.history;
+			const blob = arrayBufferToBlob( toArrayBuffer( fileContent.srcBuffer.data ) );
+			const srcBlobURL = getBlobURL( blob );
 
-					return newFileFromBlobURL( { srcBlobURL, filePath, history } );
-				} );
+			const filePath = file.filePath;
+			const history = fileContent.history;
+			const newFile = newFileFromBlobURL( { srcBlobURL, filePath, history } );
+
+			Promise.resolve( newFile );
 		} else {
 			return new Promise( resolve => resolve( null ) );
 		}
