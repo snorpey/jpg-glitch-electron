@@ -1,7 +1,7 @@
 import { loadFile } from '@/util/file.js';
 import { toArrayBuffer  } from '@/util/buffer.js';
 import { lookup } from 'mime-types';
-import blobUtil from 'blob-util';
+import { arrayBufferToBlob, createObjectURL, dataURLToBlob } from 'blob-util';
 
 export function loadLocalImage ( imagePath ) {
 	return blobFromImageFile( imagePath )
@@ -30,14 +30,11 @@ export function loadImage ( imagePath ) {
 export function blobURLFromImageFile ( imagePath ) {
 	return loadFile( imagePath )
 		.then( file => {
-			return blobUtil
-				.arrayBufferToBlob( toArrayBuffer( file.fileContent ), lookup( imagePath ) )
-				.then( blob => blobUtil.createObjectURL( blob ) );
-		} );
-}
+			const mimeType = lookup( imagePath );
+			const arrayBuffer = toArrayBuffer( file.fileContent );
 
-export function arrayBufferToBlob ( arrayBuffer ) {
-	return blobUtil.arrayBufferToBlob( arrayBuffer );
+			return createObjectURL( arrayBufferToBlob( arrayBuffer, mimeType ) )
+		} );
 }
 
 function imageToImageData ( img ) {
@@ -66,14 +63,11 @@ function imageToImageData ( img ) {
 }
 
 export function dataURLtoBlobURL ( dataURL ) {
-	return blobUtil.dataURLToBlob( dataURL )
-		.then( blob => {
-			return blobUtil.createObjectURL( blob );	
-		} );
+	return createObjectURL( dataURLToBlob( dataURL ) );
 }
 
 export function getBlobURL ( blob ) {
-	return blobUtil.createObjectURL( blob );
+	return createObjectURL( blob );
 }
 
 export function getImageSize ( img ) {
