@@ -1,5 +1,7 @@
 # JPG Glitch Electron
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/snorpey/jpg-glitch-electron.svg)](https://greenkeeper.io/)
+
 > An app for glitching images
 
 ![Windows Screenshot](build/screenshots/windows/01.png)
