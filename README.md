@@ -2,9 +2,14 @@
 
 > An app for glitching images
 
-![Windows Screenshot](build/screenshots/windows/01.png)
+![Windows Screenshot](docs/screenshots/mac/01.png)
 
-This is the desktop app for [jpg-glitch](https://snorpey.github.io/jpg-glitch). You can use it to transform images so that appear glitched.
+You can use this app to transform images so that appear glitched.
+
+This is a hybrid desktop / progressive web app for [jpg-glitch](https://snorpey.github.io/jpg-glitch).
+
+You can either download a standalone app for your (desktop) operating or just open it in your browser: [
+JPG Glitch](https://snorpey.github.io/jpg-glitch-electron)
 
 ## Download
 The following operating systems are supported:
@@ -18,7 +23,7 @@ _Please note:_ This software hasn't been extensively tested. Please [report](../
 
 ### Development
 
-The app is built using [electron-vue](https://github.com/SimulatedGREG/electron-vue)@[1c165f7](https://github.com/SimulatedGREG/electron-vue/tree/1c165f7c5e56edaf48be0fbb70838a1af26bb015) Documentation about the original structure can be found [here](https://simulatedgreg.gitbooks.io/electron-vue/content/index.html).
+The app is built using [vue-cli-plugin-electron-builder](https://nklayman.github.io/vue-cli-plugin-electron-builder).
 
 #### Build Setup
 
@@ -28,10 +33,13 @@ This project has `node-canvas` as a dependency, which requires additional softwa
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:9080
-npm run dev
+# serve pwa with hot reload
+npm run pwa:serve
 
-# build electron application for production
+# serve electron with hot reload
+npm run electron:serve
+
+# build the pwa and electron apps for production
 npm run build
 
 ```
@@ -40,4 +48,4 @@ You can find installation instructions for building `node-canvas` are [here](htt
 
 These instructions may or may not work for you on the first try. If in doubt, delete the `node_modules` directory start a fresh install with `npm install`, and google any error messages. With persistance, you'll get there eventually.
 
-When building on Linux, ensure that `snapcraft` and `snap core` are available and installed (or comment out the `snap` entry in `package.json`).
+When building on Linux, ensure that `snapcraft` and `snap core` are available and installed (or comment out the `snap` target entry in `vue.config.js`).

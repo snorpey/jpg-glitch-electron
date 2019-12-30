@@ -1,0 +1,43 @@
+.btn {
+	background-color: transparent;
+	padding: 0.4em 0.8em;
+	border-radius: 3px;
+	border: none;
+	color: var(--text-color);
+	cursor: pointer;
+	transition: all 0.2s;
+	outline: none;
+	text-decoration: none;
+	font-weight: 500;
+	text-transform: uppercase;
+	/* border: 2px solid var(--text-color); */
+	min-height: 2.2em;
+	line-height: 1.5em;
+	position: relative;
+	overflow: hidden;
+	display: inline-block;
+}
+
+.btn::before {
+	content: '';
+	position: absolute;
+	display: block;
+	width: calc(100% - 4px);
+	height: calc(100% - 4px);
+	left: 0;
+	top: 0;
+	border: 2px solid var(--text-color);
+	border-radius: 3px;
+	transition: all 0.2s ease;
+	opacity: 0.2;
+}
+
+.btn:hover::before,
+.btn:active::before,
+.btn.is-active::before {
+	opacity: 1;
+}
+
+.btn.not([disabled]) {
+	cursor: pointer;
+}
