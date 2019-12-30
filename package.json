@@ -1,6 +1,6 @@
 {
   "name": "jpg-glitch-electron",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "description": "An application for glitching images",
   "author": "Georg Fischer <hi@snorpey.com>",
