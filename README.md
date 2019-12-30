@@ -2,7 +2,7 @@
 
 > An app for glitching images
 
-![Windows Screenshot](docs/screenshots/mac/01.png)
+![Windows Screenshot](assets/screenshots/mac/01.png)
 
 You can use this app to transform images so that appear glitched.
 
