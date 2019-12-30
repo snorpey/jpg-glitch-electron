@@ -16,7 +16,7 @@
 </style>
 
 <script>
-import glitch from 'glitch-canvas/dist/glitch-canvas-browser.es6';
+import glitch from 'glitch-canvas-browser/glitch-canvas-browser.es6';
 import { eventBus } from '@/util/eventBus.js';
 
 export default {
