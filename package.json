@@ -1,15 +1,14 @@
 {
   "name": "jpg-glitch-electron",
   "version": "0.1.0",
-  "private": true,
+  "license": "MIT",
   "description": "An application for glitching images",
   "author": "Georg Fischer <hi@snorpey.com>",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "npm run pwa:build && npm run electron:build",
     "pwa:build": "vue-cli-service build",
-    "electron:build": "npm run electron:generate-icons && vue-cli-service electron:build",
-    "electron:generate-icons": "electron-icon-builder --input=./public/img/icons/android-chrome-512x512.png --output=build --flatten",
+    "electron:build": "vue-cli-service electron:build",
     "electron:serve": "vue-cli-service electron:serve",
     "postinstall": "electron-builder install-app-deps",
     "postuninstall": "electron-builder install-app-deps"
@@ -31,59 +30,7 @@
     "@vue/cli-plugin-pwa": "^4.1.1",
     "@vue/cli-service": "^4.1.1",
     "electron": "^6.0.0",
-    "electron-icon-builder": "^1.0.2",
     "vue-cli-plugin-electron-builder": "^1.4.4",
     "vue-template-compiler": "^2.6.10"
-  },
-  "_build": {
-    "productName": "JPG Glitch",
-    "appId": "com.snorpey.jpg-glitch-electron",
-    "copyright": "Copyright (c) 2018 - 2019 Georg Fischer <hi@snorpey.com>",
-    "directories": {
-      "output": "build"
-    },
-    "files": [
-      "dist/electron/**/*"
-    ],
-    "dmg": {
-      "contents": [
-        {
-          "x": 410,
-          "y": 150,
-          "type": "link",
-          "path": "/Applications"
-        },
-        {
-          "x": 130,
-          "y": 150,
-          "type": "file"
-        }
-      ]
-    },
-    "mac": {
-      "icon": "build/icons/icon.icns"
-    },
-    "win": {
-      "icon": "build/icons/icon.ico"
-    },
-    "linux": {
-      "target": [
-        "AppImage",
-        "snap",
-        "deb",
-        "tar.gz"
-      ],
-      "icon": "build/icons",
-      "category": "Graphics",
-      "desktop": {
-        "Type": "Application",
-        "Name": "JPG Glitch",
-        "Comment": "An application for glitching images"
-      }
-    },
-    "snap": {
-      "confinement": "classic",
-      "grade": "devel"
-    }
   }
 }
