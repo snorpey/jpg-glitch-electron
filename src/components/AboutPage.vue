@@ -99,7 +99,6 @@
 
 <script>
 import { productName, version, homepage, author, bugs } from '../../package.json';
-// import { openLink } from '../util/link.js';
 
 export default {
 	computed: {
@@ -136,8 +135,10 @@ export default {
 			event.preventDefault();
 			
 			const url = event.target.href;
-			console.log( 'OPEN', url );
-			// openLink( url );
+
+			if ( this.isElectron ) {
+				require('electron').shell.openExternal( url )
+			}
 		}
 	}
 }
