@@ -94,10 +94,10 @@ export function glitchFileFromJSON ( json, filePath = null, isOnHardDrive = fals
 
 		const glitchFile = new GlitchFile( fileData );
 
-		console.log( 'GLITCH FILE IMPORT', glitchFile );
+		// console.log( 'GLITCH FILE IMPORT', glitchFile );
 		return glitchFile;
 	} catch ( err ) {
-		console.log( 'FAILED GLITCH FILE', err );
+		// console.log( 'FAILED GLITCH FILE', err );
 		Promise.reject( err );
 	}
 }

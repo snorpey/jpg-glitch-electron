@@ -35,7 +35,7 @@ export function loadFileFromHardDrive ( filePath ) {
 					return glitchFileFromJSON( fileContent, filePath, true );
 				} );
 		} else {
-			console.log( 'cant handle', filePath, isGlitchFilePath( filePath ) );
+			// console.log( 'cant handle', filePath, isGlitchFilePath( filePath ) );
 			return Promise.reject( new Error( 'Could not handle file type of file:' + filePath ) );
 		}
 	}
@@ -47,11 +47,11 @@ export function saveFile ( glitchFile, filePath = null ) {
 	}
 
 	if ( filePath ) {
-		console.log( 'STORING FILE....', filePath );
+		// console.log( 'STORING FILE....', filePath );
 		return glitchFileToJSON( glitchFile )
 			.then( json => saveTextFile( filePath, json ) );
 	} else {
-		console.log( 'NO FILE PATH!', filePath );
+		// console.log( 'NO FILE PATH!', filePath );
 		return Promise.reject( new Error( 'No file path was given' ) );
 	}
 }
@@ -71,7 +71,7 @@ export function saveFileAs ( glitchFile ) {
 				return saveFile( glitchFile, result.filePath );
 			} else {
 				if ( result.canceled ) {
-					console.log( 'Save was canceled' );
+					// console.log( 'Save was canceled' );
 					return null;
 				} else {
 					throw new Error( 'Could not save file' );
@@ -98,7 +98,7 @@ export function exportFileAs ( glitchFile ) {
 					.then( buffer => saveFileToDisk( result.filePath, buffer, 'binary' ) );
 			} else {
 				if ( result.canceled ) {
-					console.log( 'Save was canceled' );
+					// console.log( 'Save was canceled' );
 					return null;
 				} else {
 					throw new Error( 'Could not save file' );
