@@ -13,5 +13,3 @@ export default new Vuex.Store( {
 	},
 	strict: true//process.env.NODE_ENV !== 'production'
 } );
-
-console.log( process.env.IS_ELECTRON );

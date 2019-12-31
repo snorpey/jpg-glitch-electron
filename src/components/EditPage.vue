@@ -14,12 +14,14 @@
 				<p>Select a files from your hard drive and start glitching.</p>
 				<button v-if="isElectron" class="btn" @click="openClicked">Open Files</button>
 				<label v-if="!isElectron" for="file-input" class="btn">Open Files</label>
+				<p v-if="!isElectron">This app is also available to download. You can find out more on the <a :href="homepage" target="_blank" rel="noopener">project website</a></p>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+import { homepage } from '../../package.json';
 import TabBar from '@/components/EditPage/TabBar.vue';
 import GlitchImage from '@/components/EditPage/GlitchImage.vue';
 import Controls from '@/components/EditPage/Controls.vue';
@@ -41,7 +43,10 @@ export default {
 		},
 		isElectron () {
 			return process.env.IS_ELECTRON;
-		}
+		},
+		homepage () {
+			return homepage;
+		}   
 	},
 	methods: {
 		openClicked () {
@@ -74,6 +79,15 @@ export default {
 
 .welcome-text .btn {
 	margin-top: 3em;
+}
+
+.welcome-text a {
+	color:  #06f;
+} 
+
+.welcome-text .btn + p {
+	margin-top: 3em;
+	font-size: 80%;
 }
 
 .edit-page .about-btn {

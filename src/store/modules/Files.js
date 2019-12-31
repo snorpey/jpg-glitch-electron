@@ -157,12 +157,12 @@ const actions = {
 		const glitchFile = getters.fileById( fileId );
 
 		if ( glitchFile && glitchFile.glitchBlobURL ) {
-			console.log( 'EXPORT IMAGE DIALOG' );
+			// console.log( 'EXPORT IMAGE DIALOG' );
 
 			let promise = Promise.resolve();
 			
 			if ( process.env.IS_ELECTRON ) {
-				console.log( 'EXPORT AS ELECTRON' );
+				// console.log( 'EXPORT AS ELECTRON' );
 
 				promise = exportFileAs
 						? Promise.resolve()
@@ -172,7 +172,7 @@ const actions = {
 						return exportFileAs( glitchFile );
 					} )
 					.then( exportAsResult => {
-						console.log( 'EXPORTED IMAGE AS', exportAsResult.filePath );
+						// console.log( 'EXPORTED IMAGE AS', exportAsResult.filePath );
 
 						dispatch( 'updateHistory', {
 							fileId,
@@ -185,7 +185,7 @@ const actions = {
 
 			} else {
 				// SAVE AS GLITCH FILE!!!
-				console.log( 'EXPORT IMAGE AS BROWSER', glitchFile );
+				// console.log( 'EXPORT IMAGE AS BROWSER', glitchFile );
 					// import dependency on the fly
 					promise = exportFileAs
 						? Promise.resolve()
@@ -260,7 +260,7 @@ const actions = {
 		if ( process.env.IS_ELECTRON ) {
 			if ( glitchFile ) {
 				if (
-					glitchFile.isOnHardDive &&
+					glitchFile.isOnHardDrive &&
 					glitchFile.filePath
 				) {
 					let promise = Promise.resolve();
@@ -305,8 +305,7 @@ const actions = {
 		if ( glitchFile ) {
 			let promise = Promise.resolve();
 			
-			if ( process.env.IS_ELECTRON ) {
-								
+			if ( process.env.IS_ELECTRON ) {								
 				promise = saveFileAs
 						? Promise.resolve()
 						: import( '@/util/electron.js' )
@@ -315,8 +314,7 @@ const actions = {
 				promise = promise
 					.then( () => saveFileAs( glitchFile ) )
 					.then( saveAsResult => {
-						console.log( 'FILE SAVED TO', saveAsResult.filePath );
-						
+						// update glitchFile and and name if the user stored a different file name						
 						if ( glitchFile.fileName !== getFileName( saveAsResult.filePath ) ) {
 							commit( 'SET_FILE_ATTR', {
 								file: glitchFile,
@@ -328,7 +326,13 @@ const actions = {
 						commit( 'SET_FILE_ATTR', {
 							file: glitchFile,
 							key: 'filePath',
-							value: getFileName( saveAsResult.filePath )
+							value: saveAsResult.filePath
+						} );
+
+						commit( 'SET_FILE_ATTR', {
+							file: glitchFile,
+							key: 'isOnHardDrive',
+							value: true
 						} );
 
 						dispatch( 'updateHistory', {
@@ -340,7 +344,7 @@ const actions = {
 						} );
 					} );
 			} else {
-				console.log( 'SAVE AS BROWSER', glitchFile );
+				// console.log( 'SAVE AS BROWSER', glitchFile );
 				// import dependency on the fly
 				promise = saveFileAs
 					? Promise.resolve()

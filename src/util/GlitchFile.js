@@ -25,7 +25,7 @@ export class GlitchFile {
 		this.history = params.history || [ ];
 		this.glitchBlobURL = null;
 
-		this.isOnHardDive = !! params.isOnHardDive;
+		this.isOnHardDrive = !! params.isOnHardDrive;
 	}
 }
 	
@@ -78,14 +78,14 @@ export function glitchFilefromImageBlobURL ( srcBlobURL, srcFilePath = null, src
 	} );
 }
 
-export function glitchFileFromJSON ( json, filePath = null, isOnHardDive = false ) {
+export function glitchFileFromJSON ( json, filePath = null, isOnHardDrive = false ) {
 	try {
 		const fileData = JSON.parse( json );
 		const arrayBuffer = toArrayBuffer( fileData.srcBuffer );
 		const srcBlobURL = blobURLFromArrayBuffer( arrayBuffer, fileData.srcFileType );
 
 		fileData.srcBlobURL = srcBlobURL;
-		fileData.isOnHardDive = isOnHardDive;
+		fileData.isOnHardDrive = isOnHardDrive;
 
 		if ( filePath ) {
 			fileData.filePath = filePath;
@@ -107,11 +107,7 @@ export function glitchFileToJSON ( glitchFile ) {
 		.then( blob => new Response( blob ).arrayBuffer() )
 		.then( srcBuffer => {
 			const fileContents = {
-				// id: glitchFile.id,
 				fileName: glitchFile.fileName,
-				filePath: glitchFile.filePath,
-				srcFilePath: glitchFile.srcFilePath,
-				srcFileType: glitchFile.srcFileType,
 				srcBuffer: Array.from( new Uint8Array( srcBuffer ) ),
 				history: glitchFile.history
 			};
@@ -119,4 +115,3 @@ export function glitchFileToJSON ( glitchFile ) {
 			return JSON.stringify( fileContents );
 		} );
 }
-// }

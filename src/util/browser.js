@@ -1,10 +1,3 @@
-// const openDialogParams = {
-//          properties: [ 'openFile', 'multiSelections' ],
-//          filters: [
-//             { name: 'Images', extensions: [ 'jpg', 'png' ] }
-//          ]
-//       };
-
 import { blobURLFromArrayBuffer } from '@/util/image.js';
 import { isImageFilePath, getExtension, getFileName } from '@/util/path.js';
 import { glitchFilefromFileInput, glitchFileToJSON } from '@/util/GlitchFile.js';
@@ -47,7 +40,7 @@ export function exportFileAs ( glitchFile ) {
 
 		document.body.removeChild( linkEl );
 	} else {
-		console.log( `ERROR: File doesn't have a glitchBlobURL` );
+		throw new Error( `File doesn't have a glitchBlobURL` );
 	}
 }
 
