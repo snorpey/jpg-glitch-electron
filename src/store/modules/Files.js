@@ -216,7 +216,7 @@ const actions = {
 		const openDialogParams = {
 			properties: [ 'openFile', 'multiSelections' ],
 			filters: [
-				{ name: 'Images', extensions: [ 'jpg', 'png', 'glitch' ] }
+				{ name: 'Images', extensions: [ 'jpg', 'jpeg', 'png', 'glitch' ] }
 			]
 		};
 
