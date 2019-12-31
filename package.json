@@ -1,13 +1,13 @@
 {
   "name": "jpg-glitch-electron",
   "productName": "JPG Glitch",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "description": "An application for glitching images",
   "author": {
-    "name" : "Georg Fischer",
-    "email" : "hi@snorpey.com",
-    "url" : "https://snorpey.com/"
+    "name": "Georg Fischer",
+    "email": "hi@snorpey.com",
+    "url": "https://snorpey.com/"
   },
   "homepage": "https://github.com/snorpey/jpg-glitch-electron/",
   "bugs": "https://github.com/snorpey/jpg-glitch-electron/issues/",
