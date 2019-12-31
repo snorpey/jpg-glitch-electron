@@ -61,8 +61,10 @@ export function saveFileAs ( glitchFile ) {
 		properties: [ 'openFile', 'multiSelections' ],
 		filters: [
 			{ name: 'Images', extensions: [ 'glitch' ] }
-		]
+		],
+		defaultPath: glitchFile.filePath
 	};
+
 	return remote.dialog.showSaveDialog( saveDialogParams )
 		.then( result => {
 			if ( result.filePath ) {
