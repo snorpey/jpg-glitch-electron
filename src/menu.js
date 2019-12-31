@@ -5,8 +5,6 @@ import { homepage, bugs } from '../package.json';
 
 const { app, Menu } = remote;
 
-console.log( homepage, bugs );
-
 const template = [
 	{
 		id: 'file',
