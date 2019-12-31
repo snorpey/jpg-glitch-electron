@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.7ceceb50648fb3d027b713f9017fbb7d.js"
+  "precache-manifest.2a8cbb6b9faafd28fa1183975c0e19fd.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "jpg-glitch-electron"});
