@@ -9,10 +9,10 @@
 					<div class="about-text">
 						<h1 class="about-app-name center-text">{{ appName }}</h1>
 						<p class="center-text">Version {{ appVersion }}</p>
-						<p class="about-small center-text" v-if="isElectron">Copyright &copy; 2019 <a  @click="linkClicked" href="https://snorpey.com">Georg Fischer</a></p>
-						<p class="about-small center-text" v-if="!isElectron">Copyright &copy; 2019 <a href="https://snorpey.com" target="_blank" rel="noopener">Georg Fischer</a></p>
-						<p class="about-small center-text about-margin" v-if="isElectron"><a href="https://snorpey.github.io/jpg-glitch-electron" @click="linkClicked">Website</a> <a href="https://github.com/snorpey/jpg-glitch-electron/issues" @click="linkClicked">Report a bug</a></p>
-						<p class="about-small center-text about-margin" v-if="!isElectron"><a href="https://snorpey.github.io/jpg-glitch-electron" target="_blank" rel="noopener">Website</a> <a href="https://github.com/snorpey/jpg-glitch-electron/issues"  target="_blank" rel="noopener">Report a bug</a></p>
+						<p class="about-small center-text" v-if="isElectron">Copyright &copy; 2019 <a  @click="linkClicked" :href="author.url">{{ author.name }}</a></p>
+						<p class="about-small center-text" v-if="!isElectron">Copyright &copy; 2019 <a :href="author.url" target="_blank" rel="noopener">{{ author.name }}</a></p>
+						<p class="about-small center-text about-margin" v-if="isElectron"><a :href="homepage" @click="linkClicked">Website</a> <a :href="bugs" @click="linkClicked">Report a bug</a></p>
+						<p class="about-small center-text about-margin" v-if="!isElectron"><a :href="homepage" target="_blank" rel="noopener">Website</a> <a :href="bugs"  target="_blank" rel="noopener">Report a bug</a></p>
 						<p class="about-small center-text about-margin">Thank you for using this software.<br /> Have a great day!</p>
 					</div>
 					<button class="about-page-close" @click="closeClicked">&times;</button>
@@ -98,7 +98,7 @@
 </style>
 
 <script>
-import { build, version } from '../../package.json';
+import { productName, version, homepage, author, bugs } from '../../package.json';
 // import { openLink } from '../util/link.js';
 
 export default {
@@ -107,13 +107,22 @@ export default {
 			return this.$store.getters.isShowingAbout;
 		},
 		appIcon () {
-			return 'static/512x512.png';
+			return 'img/icons/android-chrome-512x512.png';
 		},
 		appName () {
-			return build.productName;
+			return productName;
 		},
 		appVersion () {
 			return version;
+		},
+		author () {
+			return author;
+		},
+		bugs () {
+			return bugs;
+		},
+		homepage () {
+			return homepage;
 		},
 		isElectron () {
 			return !! process.env.IS_ELECTRON;

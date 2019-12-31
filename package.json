@@ -1,9 +1,16 @@
 {
   "name": "jpg-glitch-electron",
+  "productName": "JPG Glitch",
   "version": "0.1.1",
   "license": "MIT",
   "description": "An application for glitching images",
-  "author": "Georg Fischer <hi@snorpey.com>",
+  "author": {
+    "name" : "Georg Fischer",
+    "email" : "hi@snorpey.com",
+    "url" : "https://snorpey.com/"
+  },
+  "homepage": "https://github.com/snorpey/jpg-glitch-electron/",
+  "bugs": "https://github.com/snorpey/jpg-glitch-electron/issues/",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "npm run pwa:build && npm run electron:build",

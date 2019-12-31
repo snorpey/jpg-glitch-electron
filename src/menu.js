@@ -1,7 +1,11 @@
 import { remote } from 'electron';
 import store from './store';
 
+import { homepage, bugs } from '../package.json';
+
 const { app, Menu } = remote;
+
+console.log( homepage, bugs );
 
 const template = [
 	{
@@ -102,8 +106,12 @@ const template = [
 				}
 			},
 			{
-				label: 'Website',
-				click () { require('electron').shell.openExternal( 'https://snorpey.com/jpg-glitch-electron' ) }
+				label: 'Open Project Website',
+				click () { require('electron').shell.openExternal( homepage ) }
+			},
+			{
+				label: 'Report a Bug',
+				click () { require('electron').shell.openExternal( bugs ) }
 			}
 		]
 	}
@@ -124,6 +132,14 @@ if ( process.platform === 'darwin' ) {
 			{ role: 'quit' }
 		]
 	} );
+
+	// template.push( {
+	// 	role: 'window',
+	// 	submenu: [
+	// 		{ role: 'minimize' },
+	// 		{ role: 'close' }
+	// 	]
+	// } );
 
 	// Edit menu
 	// template[1].submenu.push(
