@@ -60,6 +60,10 @@ module.exports = {
 				"win": {
 					"icon": "build/icons/icon.ico"
 				},
+				"deb": {
+					"packageCategory": "graphics",
+					"priority": "optional"
+				},
 				"linux": {
 					"target": [
 						"AppImage",
@@ -67,7 +71,7 @@ module.exports = {
 						"deb",
 						"tar.gz"
 					],
-					"icon": "build/icons",
+					// "icon": "build/icons",
 					"category": "Graphics",
 					"desktop": {
 						"Type": "Application",
@@ -77,7 +81,8 @@ module.exports = {
 				},
 				"snap": {
 					"confinement": "classic",
-					"grade": "devel"
+					"grade": "stable",
+					"summary": "An application for glitching images"
 				}
 			},
 			// Use this to change the entrypoint of your app's main process
