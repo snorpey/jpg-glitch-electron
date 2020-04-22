@@ -85,6 +85,10 @@ const getters = {
 			amount: getters.latestEvent( fileId, 'amount' ),
 			iterations: getters.latestEvent( fileId, 'iterations' )
 		};
+	},
+
+	defaultParams ( state ) {
+		return Object.assign( { }, state.defaultParams );
 	}
 };
 
@@ -157,13 +161,10 @@ const actions = {
 		const glitchFile = getters.fileById( fileId );
 
 		if ( glitchFile && glitchFile.glitchBlobURL ) {
-			// console.log( 'EXPORT IMAGE DIALOG' );
-
 			let promise = Promise.resolve();
 			
 			if ( process.env.IS_ELECTRON ) {
-				// console.log( 'EXPORT AS ELECTRON' );
-
+				// import dependency on the fly
 				promise = exportFileAs
 						? Promise.resolve()
 						: import('@/util/electron.js').then( module => exportFileAs = module.exportFileAs );
@@ -172,40 +173,35 @@ const actions = {
 						return exportFileAs( glitchFile );
 					} )
 					.then( exportAsResult => {
-						// console.log( 'EXPORTED IMAGE AS', exportAsResult.filePath );
-
-						dispatch( 'updateHistory', {
-							fileId,
-							event: {
-								type: 'export',
-								fileName: getFileName( exportAsResult.filePath, true )
-							}
-						} );
+						if ( exportAsResult ) {
+							dispatch( 'updateHistory', {
+								fileId,
+								event: {
+									type: 'export',
+									fileName: getFileName( exportAsResult.filePath, true )
+								}
+							} );
+						}
 					} );
 
 			} else {
-				// SAVE AS GLITCH FILE!!!
-				// console.log( 'EXPORT IMAGE AS BROWSER', glitchFile );
-					// import dependency on the fly
-					promise = exportFileAs
-						? Promise.resolve()
-						: import('@/util/browser.js').then( module => exportFileAs = module.exportFileAs );
+				// import dependency on the fly
+				promise = exportFileAs
+					? Promise.resolve()
+					: import('@/util/browser.js').then( module => exportFileAs = module.exportFileAs );
 
-					promise = promise.then( () => {
-						// const fileName = file.fileName + '.png';
-						// const fileName = glitchFile.fileName.replace( getExtension( glitchFile.fileName ), 'png' );
-
-						return exportFileAs( glitchFile );
-					} )
-					.then( () => {
-						dispatch( 'updateHistory', {
-							fileId,
-							event: {
-								type: 'export',
-								fileName: getFileName( glitchFile.fileName ) + '.glitch'
-							}
-						} );
+				promise = promise.then( () => {
+					return exportFileAs( glitchFile );
+				} )
+				.then( () => {
+					dispatch( 'updateHistory', {
+						fileId,
+						event: {
+							type: 'export',
+							fileName: getFileName( glitchFile.fileName ) + '.glitch'
+						}
 					} );
+				} );
 			}
 		}
 	},
@@ -220,8 +216,7 @@ const actions = {
 			]
 		};
 
-		if (process.env.IS_ELECTRON) {
-			// console.log( 'ELECTRON: requestToImportImage' );
+		if ( process.env.IS_ELECTRON ) {
 			promise = openFileDialog
 				? Promise.resolve()
 				: import('@/util/electron.js').then( module => openFileDialog = module.openFileDialog );
@@ -229,9 +224,7 @@ const actions = {
 			promise = promise.then( () => {
 				return openFileDialog( openDialogParams );
 			} );
-			// import('@/util/file.js').then(e => console.log( 'ELE', e ));
 		} else {
-			// console.log( 'BROWSER: requestToImportImage' );
 			// import dependency on the fly
 			promise = openFileDialog
 				? Promise.resolve()
@@ -273,15 +266,16 @@ const actions = {
 					promise = promise
 						.then( () => saveFile( glitchFile ) )
 						.then( saveResult => {
-							// console.log( 'FILE SAVED TO', saveResult.filePath );
 
-							dispatch( 'updateHistory', {
-								fileId,
-								event: {
-									type: 'save',
-									fileName: getFileName( saveResult.filePath, true )
-								}
-							} );
+							if ( saveResult ) {
+								dispatch( 'updateHistory', {
+									fileId,
+									event: {
+										type: 'save',
+										fileName: getFileName( saveResult.filePath, true )
+									}
+								} );
+							}
 						} );
 					
 					return promise;
@@ -290,7 +284,7 @@ const actions = {
 				}
 
 			} else {
-				console.log( 'NO GLITCH FILE FOUND' );
+				// no glitch file found
 			}
 		} else {
 			if ( glitchFile ) {
@@ -344,7 +338,6 @@ const actions = {
 						} );
 					} );
 			} else {
-				// console.log( 'SAVE AS BROWSER', glitchFile );
 				// import dependency on the fly
 				promise = saveFileAs
 					? Promise.resolve()
@@ -418,6 +411,21 @@ const actions = {
 			};
 						
 			dispatch( 'updateHistory', { fileId: change.fileId, event } );
+		}
+	},
+
+	randomControlValues ( { getters, dispatch }, change ) {
+		if ( change ) {
+			Object.keys( getters.defaultParams )
+				.forEach( key => {
+					const event = {
+						type: 'param',
+						key,
+						value: Math.floor( Math.random() * 100 )
+					};
+
+					dispatch( 'updateHistory', { fileId: change.fileId, event } );
+				} );			
 		}
 	},
 

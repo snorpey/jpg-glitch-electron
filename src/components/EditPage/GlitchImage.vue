@@ -24,7 +24,8 @@ export default {
 	props: [ 'fileId' ],
 	data () {
 		return {
-			dataURL: null
+			dataURL: null,
+			rafId: null
 		}
 	},
 	computed: {
@@ -69,7 +70,11 @@ export default {
 			this.updateImage();
 		},
 		params () {
-			this.updateImage();
+			cancelAnimationFrame( this.rafId );
+
+			this.rafId = requestAnimationFrame( () => {
+				this.updateImage();
+			} );
 		},
 	}
 }

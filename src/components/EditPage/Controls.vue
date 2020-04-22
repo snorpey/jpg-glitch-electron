@@ -24,6 +24,9 @@
 				@input="controlChanged"
 			>
 		</div>
+		<div class="control-item">
+			<button class="btn" @click="randomClicked()">Random</button>
+		</div>
 	</div>
 </template>
 
@@ -149,6 +152,12 @@ export default {
 				fileId: this.fileId,
 				key,
 				value
+			} );
+		},
+
+		randomClicked () {
+			this.$store.dispatch( 'randomControlValues', {
+				fileId: this.fileId
 			} );
 		}
 	}
