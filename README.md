@@ -16,9 +16,9 @@ The following operating systems are supported:
 
 _Please note:_ This software hasn't been extensively tested. Please [report](../../issues) any bugs you might encounter.
 
-* [Windows](https://github.com/snorpey/jpg-glitch-electron/releases/download/v0.1.2/JPG.Glitch.Setup.0.1.2.exe)
-* [macOS](https://github.com/snorpey/jpg-glitch-electron/releases/download/v0.1.2/JPG.Glitch-0.1.2.dmg)
-* Linux: [AppImage](https://github.com/snorpey/jpg-glitch-electron/releases/download/v0.1.2/JPG.Glitch-0.1.2.AppImage) / [deb](https://github.com/snorpey/jpg-glitch-electron/releases/download/v0.1.2/jpg-glitch-electron_0.1.2_amd64.deb) / [snap](https://github.com/snorpey/jpg-glitch-electron/releases/download/v0.1.2/jpg-glitch-electron_0.1.2_amd64.snap) / [tar.gz](https://github.com/snorpey/jpg-glitch-electron/releases/download/v0.1.2/jpg-glitch-electron-0.1.2.tar.gz)
+* [Windows](https://github.com/snorpey/jpg-glitch-electron/releases/download/v0.1.3/JPG.Glitch.Setup.0.1.3.exe)
+* [macOS](https://github.com/snorpey/jpg-glitch-electron/releases/download/v0.1.3/JPG.Glitch-0.1.3.dmg)
+* Linux: [AppImage](https://github.com/snorpey/jpg-glitch-electron/releases/download/v0.1.3/JPG.Glitch-0.1.3.AppImage) / [deb](https://github.com/snorpey/jpg-glitch-electron/releases/download/v0.1.3/jpg-glitch-electron_0.1.3_amd64.deb) / [snap](https://github.com/snorpey/jpg-glitch-electron/releases/download/v0.1.3/jpg-glitch-electron_0.1.3_amd64.snap) / [tar.gz](https://github.com/snorpey/jpg-glitch-electron/releases/download/v0.1.3/jpg-glitch-electron-0.1.3.tar.gz)
 
 
 ### Development
