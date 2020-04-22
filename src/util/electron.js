@@ -1,7 +1,7 @@
 import { remote } from 'electron';
 import { getExtension, isImageFilePath, isGlitchFilePath } from '@/util/path.js';
 import { blobURLFromImagePath } from '@/util/image.js';
-import { loadTextFile, saveTextFileAs, saveTextFile, saveFile as saveFileToDisk, blobUrlToBuffer } from '@/util/file.js';
+import { loadTextFile, saveTextFile, saveFile as saveFileToDisk, blobUrlToBuffer } from '@/util/file.js';
 import { lookup as getMimeTypeFromFilePath } from 'mime-types';
 import { glitchFilefromImageBlobURL, glitchFileFromJSON, glitchFileToJSON } from '@/util/GlitchFile.js';
 
@@ -79,7 +79,7 @@ export function saveFileAs ( glitchFile ) {
 			}
 		} );
 	
-	return saveTextFileAs( glitchFile.fileName + '.glitch', json );
+	return saveTextFile( glitchFile.fileName + '.glitch', json );
 }
 
 export function exportFileAs ( glitchFile ) {
