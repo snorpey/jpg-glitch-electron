@@ -9,8 +9,8 @@
 					<div class="about-text">
 						<h1 class="about-app-name center-text">{{ appName }}</h1>
 						<p class="center-text">Version {{ appVersion }}</p>
-						<p class="about-small center-text" v-if="isElectron">Copyright &copy; 2019 <a  @click="linkClicked" :href="author.url">{{ author.name }}</a></p>
-						<p class="about-small center-text" v-if="!isElectron">Copyright &copy; 2019 <a :href="author.url" target="_blank" rel="noopener">{{ author.name }}</a></p>
+						<p class="about-small center-text about-margin" v-if="isElectron">Copyright &copy; 2018 - 2020<br /><a  @click="linkClicked" :href="author.url">{{ author.name }}</a></p>
+						<p class="about-small center-text about-margin" v-if="!isElectron">Copyright &copy; 2018 - 2020<br /><a :href="author.url" target="_blank" rel="noopener">{{ author.name }}</a></p>
 						<p class="about-small center-text about-margin" v-if="isElectron"><a :href="homepage" @click="linkClicked">Website</a> <a :href="bugs" @click="linkClicked">Report a bug</a></p>
 						<p class="about-small center-text about-margin" v-if="!isElectron"><a :href="homepage" target="_blank" rel="noopener">Website</a> <a :href="bugs"  target="_blank" rel="noopener">Report a bug</a></p>
 						<p class="about-small center-text about-margin">Thank you for using this software.<br /> Have a great day!</p>
