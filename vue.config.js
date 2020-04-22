@@ -2,6 +2,7 @@ module.exports = {
 	// configureWebpack: {
 	// 	// Configuration applied to all builds
 	// },
+	publicPath: '',
 	pluginOptions: {
 		pwa: {
 			themeColor: '#333333',
