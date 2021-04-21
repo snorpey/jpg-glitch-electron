@@ -42,6 +42,9 @@ export default {
 		exportMenuItem () {
 			return this.fileMenuItem ? this.fileMenuItem.submenu.items.filter( item => item.id === 'export' )[0] : null;
 		},
+		closeMenuItem () {
+			return this.fileMenuItem ? this.fileMenuItem.submenu.items.filter( item => item.id === 'close' )[0] : null;
+		},
 		hasOpenFiles () {
 			return this.$store.getters.files.length;
 		},
@@ -56,6 +59,9 @@ export default {
 		},
 		isExportMenuItemEnabled () {
 			return !! this.activeFile && !! this.activeFile.glitchBlobURL;
+		},
+		isCloseMenuItemEnabled () {
+			return !! this.activeFile;
 		},
 		hasMenu () {
 			return !! this.menu;
@@ -96,11 +102,17 @@ export default {
 				this.exportMenuItem.enabled = enabled;
 			}
 		},
+		isCloseMenuItemEnabled ( enabled ) {
+			if ( this.hasMenu ) {
+				this.closeMenuItem.enabled = enabled;
+			}
+		},
 		hasMenu ( hasMenu ) {
 			if ( this.hasMenu ) {
 				this.saveMenuItem.enabled = false;
 				this.saveAsMenuItem.enabled = false;
 				this.exportMenuItem.enabled = false;
+				this.closeMenuItem.enabled = false;
 			}
 		}
 	}

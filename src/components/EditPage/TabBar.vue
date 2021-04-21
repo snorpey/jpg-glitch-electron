@@ -1,17 +1,24 @@
 <template>
-	<nav class="tab-bar inverse-color" v-if="files.length">
-		<ul class="tabs">
-			<li v-for="file in files" class="tab" :class="tabCSSClasses( file.id )">
-				<span
-					v-if="hasUnsavedChanges( file.id )"
-					:title="file.name + ' has unsaved changes'"
-					class="unsaved-changes-indicator"
-				>*</span>
-				<button class="tab-name tab-name-btn" v-if="! isFileActive( file.id )" @click="activateFile( file.id )">{{ file.name }}</button>
-				<span class="tab-name" v-if="isFileActive( file.id )">{{ file.name }}</span>
-				<button class="tab-close-btn" @click="closeFile( file.id )">&times;</button>
-			</li>
-		</ul>
+	<nav class="tab-bar inverse-color" v-if="files.length" :class="tabsCssClasses">
+		<div class="tabs-wrapper">
+			<ul class="tabs">
+				<li
+					v-for="file in files"
+					class="tab"
+					:class="tabCSSClasses( file.id )"
+					@click="activateFile( file.id )"
+				>
+					<span
+						v-if="hasUnsavedChanges( file.id )"
+						:title="file.name + ' has unsaved changes'"
+						class="unsaved-changes-indicator"
+					>*</span>
+					<button class="tab-name tab-name-btn" v-if="! isFileActive( file.id )">{{ file.name }}</button>
+					<span class="tab-name" v-if="isFileActive( file.id )">{{ file.name }}</span>
+					<button class="tab-close-btn" @click="closeFile( file.id, $event )">&times;</button>
+				</li>
+			</ul>
+		</div>
 		<import-btn class="tab-open-btn">+</import-btn>
 	</nav>
 </template>
@@ -26,18 +33,46 @@
 }
 
 .is-mac .tab-bar {
-	padding-top: 23px;
+	padding-top: 35px;
+}
+
+.tabs-wrapper {
+	overflow: hidden;
+	margin-right: 0.8em;
+	display: flex;
+	align-items: flex-end;
+}
+
+.tabs--scrollable .tabs-wrapper {
+	overflow: auto;
+}
+
+.tabs--scrollable .tabs-wrapper::-webkit-scrollbar {
+    height: 2px;
+    background: var(--dark-gray);
+}
+
+.tabs--scrollable .tabs-wrapper::-webkit-scrollbar-thumb {
+    background: var(--dark-gray-light);
+    height: 2px;
 }
 
 .tab-bar .tab-open-btn {
 	flex-shrink: 0;
-	margin-bottom: 0.5em;
+	margin-bottom: 0.2em;
+	width: 30px;
+	height: 30px;
+}
+
+.tab-open-btn::before {
+	display: none;
 }
 
 .tabs {
-	width: calc(100% - 40px);
+	width: 100%;
 	margin-right: 0.8em;
 	display: flex;
+	position: relative;
 }
 
 .tab {
@@ -54,6 +89,14 @@
 	border-left: 1px var(--dark-gray) solid;
 	border-right: 1px var(--dark-gray) solid;
 	transition: all 0.2s;
+	/* max-width: 35ch; */
+	min-width: 10ch;
+	cursor: pointer;
+}
+
+.tab--noshrink {
+	max-width: 10ch;
+	flex-shrink: 0;
 }
 
 .tab:hover {
@@ -62,7 +105,7 @@
 	border-right-color: var(--dark-gray-light);
 }
 	.tab-name {
-		width: calc(100% - 65px);
+		width: calc(100% - 25px);
 		display: block;
 		margin: 0 20px;
 		overflow: hidden;
@@ -70,6 +113,7 @@
 		white-space: nowrap;
 		text-align: center;
 		line-height: 2.5em;
+		cursor: pointer;
 	}
 
 	.tab-close-btn {
@@ -77,7 +121,7 @@
 		background-color: transparent;
 		opacity: 0.8;
 		border: none;
-		tansition: all 0.2s ease;
+		transition: all 0.2s ease;
 		cursor: pointer;
 		font-weight: 100;
 		outline: none;
@@ -85,6 +129,8 @@
 		right: 10px;
 		top: 50%;
 		transform: translateY(-50%);
+		z-index: 2;
+		cursor: pointer;
 	}
 
 	.tab-close-btn:hover {
@@ -94,7 +140,6 @@
 	.tab-name-btn {
 		background-color: transparent;
 		border: none;
-		cursor: pointer;
 		font-weight: 100;
 		outline: none;
 	}
@@ -125,15 +170,17 @@
 	background-color: var(--dark-gray);
 }
 
-.tab-open-btn::before {
-	display: none;
-}
 </style>
 
 <script>
 import ImportBtn from '@/components/EditPage/ImportBtn.vue';
 export default {
 	components: { ImportBtn },
+	data () {
+		return {
+			windowWidth: window.innerWidth
+		}
+	},
 	computed: {
 		files () {
 			return this.$store.getters.files.map( file => {
@@ -142,6 +189,14 @@ export default {
 					name: file.fileName || 'Untitled'
 				}
 			} );
+		},
+		areTabsScrollable () {
+			return this.windowWidth - 60 < ( this.files.length * 80 );
+		},
+		tabsCssClasses () {
+			return {
+				'tabs--scrollable' : this.areTabsScrollable
+			};
 		}
 	},
 	methods: {
@@ -154,14 +209,26 @@ export default {
 		activateFile ( fileId ) {
 			this.$store.dispatch( 'activateFile', fileId );
 		},
-		closeFile ( fileId ) {
-			this.$store.dispatch( 'closeFile', fileId );	
+		closeFile ( fileId, event ) {
+			this.$store.dispatch( 'closeFile', fileId );
+			event.preventDefault();
 		},
-		tabCSSClasses( fileId ) {
+		tabCSSClasses ( fileId ) {
 			return {
 				'is-active': this.isFileActive( fileId )
 			};
+		},
+		onResize() {
+			this.windowWidth = window.innerWidth;
 		}
+	},
+	mounted() {
+		this.$nextTick( () => {
+			window.addEventListener( 'resize', this.onResize );
+		} );
+	},
+	beforeDestroy() { 
+		window.removeEventListener( 'resize', this.onResize ); 
 	}
 }
 </script>

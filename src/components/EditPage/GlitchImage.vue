@@ -1,12 +1,10 @@
 <template>
-	<!-- <div class="glitch-image-container"> -->
-		<img
-			v-if="dataURL"
-			:src="dataURL"
-			class="glitch-image"
-			@load="imageLoaded"
-		/>
-	<!-- </div> -->
+	<img
+		v-if="blobURL"
+		:src="blobURL"
+		class="glitch-image"
+		@load="imageLoaded"
+	/>
 </template>
 
 <style>
@@ -17,6 +15,7 @@
 
 <script>
 import glitch from 'glitch-canvas-browser/glitch-canvas-browser.es6';
+import { getBlobURL } from '@/util/image.js';
 import { eventBus } from '@/util/eventBus.js';
 
 export default {
@@ -24,7 +23,7 @@ export default {
 	props: [ 'fileId' ],
 	data () {
 		return {
-			dataURL: null,
+			blobURL: null,
 			rafId: null
 		}
 	},
@@ -44,13 +43,26 @@ export default {
 				img.onload = () => {
 					glitch( this.params )
 						.fromImage( img )
-						.toDataURL()
-						.then( dataURL => {
-							this.dataURL = dataURL;
+						.toImageData()
+						.then( imageData => {
+							const canvas = document.createElement( 'canvas' );
+							canvas.width = imageData.width;
+							canvas.height = imageData.height;
+							
+							const ctx = canvas.getContext( '2d' );
+							ctx.putImageData( imageData, 0, 0 );
+
+							return new Promise( resolve => {
+								canvas.toBlob( resolve, 'image/jpeg', 1.0 );
+							} );
+						} )
+						.then( blob => {
+							const blobURL = getBlobURL( blob ); 
+							this.blobURL = blobURL;
 
 							this.$store.dispatch( 'updateGlitch', {
 								fileId: this.fileId,
-								dataURL
+								blobURL
 							} );
 						} );
 				}

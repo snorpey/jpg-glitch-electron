@@ -16,9 +16,16 @@ protocol.registerSchemesAsPrivileged([{scheme: 'app', privileges: { secure: true
 
 function createWindow () {
 	// Create the browser window.
-	win = new BrowserWindow({ width: 800, height: 600, titleBarStyle: 'hiddenInset', webPreferences: {
-		nodeIntegration: true
-	} })
+	win = new BrowserWindow( {
+		width: 800,
+		height: 600,
+		titleBarStyle: 'hiddenInset',
+		webPreferences: {
+			nodeIntegration: true,
+			contextIsolation: false,
+			enableRemoteModule: true
+		}
+	} )
 
 	if (process.env.WEBPACK_DEV_SERVER_URL) {
 		// Load the url of the dev server if in development mode
