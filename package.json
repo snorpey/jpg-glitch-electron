@@ -1,30 +1,22 @@
 {
   "name": "jpg-glitch-electron",
-  "productName": "JPG Glitch",
-  "version": "0.1.3",
-  "license": "MIT",
+  "version": "0.1.4",
   "description": "An application for glitching images",
   "author": {
     "name": "Georg Fischer",
     "email": "hi@snorpey.com",
     "url": "https://snorpey.com/"
   },
-  "homepage": "https://github.com/snorpey/jpg-glitch-electron/",
-  "bugs": "https://github.com/snorpey/jpg-glitch-electron/issues/",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "npm run pwa:build && npm run electron:build",
-    "pwa:build": "vue-cli-service build",
     "electron:build": "vue-cli-service electron:build",
     "electron:serve": "vue-cli-service electron:serve",
     "postinstall": "electron-builder install-app-deps",
-    "postuninstall": "electron-builder install-app-deps"
+    "postuninstall": "electron-builder install-app-deps",
+    "pwa:build": "vue-cli-service build"
   },
   "main": "background.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/snorpey/jpg-glitch-electron.git"
-  },
   "dependencies": {
     "blob-to-buffer": "^1.2.9",
     "blob-util": "^2.0.2",
@@ -37,11 +29,19 @@
     "vuex": "^3.6.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.5.9",
-    "@vue/cli-plugin-pwa": "^4.5.9",
-    "@vue/cli-service": "^4.5.9",
-    "electron": "^6.1.12",
-    "vue-cli-plugin-electron-builder": "^1.4.6",
+    "@vue/cli-plugin-babel": "^4.5.12",
+    "@vue/cli-plugin-pwa": "^4.5.12",
+    "@vue/cli-service": "^4.5.12",
+    "electron": ">=7.2.4",
+    "vue-cli-plugin-electron-builder": "^2.0.0-rc.6",
     "vue-template-compiler": "^2.6.12"
+  },
+  "bugs": "https://github.com/snorpey/jpg-glitch-electron/issues/",
+  "homepage": "https://github.com/snorpey/jpg-glitch-electron/",
+  "license": "MIT",
+  "productName": "JPG Glitch",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/snorpey/jpg-glitch-electron.git"
   }
 }
