@@ -100,8 +100,7 @@ const template = [
 	{
 		role: 'window',
 		submenu: [
-			{ role: 'minimize' },
-			{ role: 'close' }
+			{ role: 'minimize' }
 		]
 	},
 	{
