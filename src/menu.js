@@ -55,6 +55,16 @@ const template = [
 						store.dispatch( 'requestToExportImage', store.getters.activeFileId );
 					}
 				}
+			},
+			{
+				id: 'close',
+				label: 'Close File',
+				accelerator: 'CommandOrControl+W',
+				click: () => {
+					if ( store.getters.activeFile ) {
+						store.dispatch( 'closeFile', store.getters.activeFileId );
+					}
+				}
 			}
 		]
 	},

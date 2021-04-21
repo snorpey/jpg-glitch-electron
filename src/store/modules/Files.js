@@ -445,11 +445,15 @@ const actions = {
 	updateGlitch ( { getters, commit }, change ) {
 		const file = getters.fileById( change.fileId );
 
-		if ( file && change.dataURL ) {
-			const glitchBlobURL = dataURLtoBlobURL( change.dataURL );
+		if ( file ) {
+			if ( change.dataURL ) {
+				const glitchBlobURL = dataURLtoBlobURL( change.dataURL );
 
-			commit( 'SET_FILE_ATTR', { file, key: 'glitchBlobURL', value: glitchBlobURL } );
-		}
+				commit( 'SET_FILE_ATTR', { file, key: 'glitchBlobURL', value: glitchBlobURL } );
+			} else if ( change.blobURL ) {
+				commit( 'SET_FILE_ATTR', { file, key: 'glitchBlobURL', value: change.blobURL } );
+			}
+		} 
 	},
 
 	quit ( { getters, commit } ) {

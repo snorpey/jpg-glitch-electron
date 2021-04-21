@@ -87,7 +87,7 @@ export function exportFileAs ( glitchFile ) {
 		const saveDialogParams = {
 		properties: [ 'openFile', 'multiSelections' ],
 		filters: [
-			{ name: 'Images', extensions: [ 'png' ] }
+			{ name: 'Images', extensions: [ 'png', 'jpg' ] }
 		]
 	};
 
